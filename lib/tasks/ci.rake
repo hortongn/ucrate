@@ -21,6 +21,7 @@ task :spec_with_app_load do
     else
       t.pattern = '../**/*_spec.rb'
     end
+    t.rspec_opts = ["--colour -I ../", '--tag ~js:true', '--backtrace', '--profile 20']
   end
 end
 
