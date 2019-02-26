@@ -10,7 +10,16 @@ desc 'Spin up test servers and run specs'
 task :spec_with_app_load do
   reset_statefile! if ENV['TRAVIS'] == 'true'
   with_test_server do
-    Rake::Task['spec'].invoke
+    if ENV['TRAVIS']
+      case ENV['SPEC_GROUP'].to_s
+      when '1'
+        t.pattern = '../../spec/features/*/'
+      else
+        pattern = FileList['../../spec/*/'].exclude(/\/(features)\//).map { |f| f << '**/*_spec.rb' }
+        t.pattern = pattern
+      end
+    else
+    t.pattern = '../**/*_spec.rb'
   end
 end
 
