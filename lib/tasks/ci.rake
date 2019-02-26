@@ -10,25 +10,20 @@ desc 'Spin up test servers and run specs'
 task :spec_with_app_load do
   reset_statefile! if ENV['TRAVIS'] == 'true'
   with_test_server do
-    if ENV['TRAVIS']
-      case ENV['SPEC_GROUP'].to_s
-      when '1'
-        t.pattern = '../../spec/features/*/'
-      else
-        pattern = FileList['../../spec/*/'].exclude(/\/(features)\//).map { |f| f << '**/*_spec.rb' }
-        t.pattern = pattern
-      end
-    else
-      t.pattern = '../**/*_spec.rb'
-    end
-    t.rspec_opts = ["--colour -I ../", '--tag ~js:true', '--backtrace', '--profile 20']
+    Rake::Task['spec'].invoke
   end
 end
 
 desc 'Generate the engine_cart and spin up test servers and run specs'
 task :ci do
   puts 'running continuous integration'
-  Rake::Task['spec_with_app_load'].invoke
+  case ENV['SPEC_GROUP'].to_s
+  when '1'
+    t.pattern = '../../spec/features/**/*_spec.rb'
+  else
+    pattern = FileList['../../spec/*/'].exclude(/\/(features)\//).map { |f| f << '**/*_spec.rb' }
+    t.pattern = pattern
+  end
 end
 
 def reset_statefile!
