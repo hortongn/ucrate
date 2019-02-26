@@ -19,7 +19,8 @@ task :spec_with_app_load do
         t.pattern = pattern
       end
     else
-    t.pattern = '../**/*_spec.rb'
+      t.pattern = '../**/*_spec.rb'
+    end
   end
 end
 
