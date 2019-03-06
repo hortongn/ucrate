@@ -10,14 +10,28 @@ desc 'Spin up test servers and run specs'
 task :spec_with_app_load do
   reset_statefile! if ENV['TRAVIS'] == 'true'
   with_test_server do
-    case ENV['SPEC_GROUP'].to_s
-    when '0'
-      Rake::Task['../../spec/features/**/'].invoke
-    else
-      pattern = FileList['../../spec/*/'].exclude(/\/(features)\//)
-      Rake::Task[pattern].invoke
+    if ENV['TRAVIS']
+      case ENV['SPEC_GROUP'].to_s
+      when '1'
+        Rake::Task['feature_sprec'].invoke
+      else
+        Rake::Task['spec_without_feature'].invoke
+      end
     end
   end
+end
+
+desc "Run feature spec"
+RSpec::Core::RakeTask.new(:feature_sprec) do |t|
+  t.pattern = '../../spec/features/**/*_spec.rb'
+  t.rspec_opts = ["--colour -I ../", '--tag ~js:true', '--backtrace', '--profile 20']
+end
+
+desc "Run spec without feture"
+RSpec::Core::RakeTask.new(:spec_without_feature) do |t|
+  pattern = FileList['../../spec/*/'].exclude(/\/(features)\//).map { |f| f << '**/*_spec.rb' }
+  t.pattern = pattern
+  t.rspec_opts = ["--colour -I ../", '--tag ~js:true', '--backtrace', '--profile 20']
 end
 
 desc 'Generate the engine_cart and spin up test servers and run specs'
