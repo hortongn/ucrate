@@ -18,7 +18,7 @@ task :spec_with_app_load do
         Rake::Task['spec_without_feature'].invoke
       end
     else
-       Rake::Task['all_spec'].invoke
+      Rake::Task['all_spec'].invoke
     end
   end
 end
