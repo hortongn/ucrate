@@ -54,6 +54,17 @@ Rails.application.routes.draw do
 
   mount Qa::Engine => '/authorities'
   mount Hyrax::Engine, at: '/'
+
+  get 'simple_doi/creator' => 'simple_doi#creator'
+  get 'simple_doi/type' => 'simple_doi#type'
+  get 'simple_doi/metadata' => 'simple_doi#metadata'
+  get 'simple_doi/license' => 'simple_doi#license'
+  get 'simple_doi/visibility' => 'simple_doi#visibility'
+  get 'simple_doi/upload' => 'simple_doi#upload'
+  get 'simple_doi/uploaded' => 'simple_doi#uploaded'
+  get 'simple_doi/save' => 'simple_doi#save'
+  resources :simple_doi, only: [:new]
+
   resources :welcome, only: 'index'
   resources :welcome_page, only: [:index, :create]
   root 'hyrax/homepage#index'
