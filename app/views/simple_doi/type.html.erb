@@ -1,16 +1,64 @@
 <div class="col-lg-8 col-lg-offset-2">
-  <h2>Simple DOI Creator - File Type</h2>
+  <h2>Simple DOI Creator - File Type (step 2 of 6)</h2>
   
   <p class="help-block">Select the option below that best matches the type of file(s) you are uploading.</p>
 
-  <p><input type="radio" name="work_type" /> Article (published or unpublished articles)</p>
-  <p><input type="radio" name="work_type" /> Dataset (files containing collections of data, including: raw data, spreadsheets, logs, etc.)</p>
-  <p><input type="radio" name="work_type" /> Document (text-based works other than articles: books, manuscripts, etc.)</p>
-  <p><input type="radio" name="work_type" /> Image (visual content: art, photographs, posters, graphics)</p>
-  <p><input type="radio" name="work_type" /> Medium (video, film, slide, or audio are referred to as time-based media)</p>
-  <p><input type="radio" name="work_type" /> Student Work (any kind of student work excluding Theses and Dissertations)</p>
-  <p><input type="radio" name="work_type" /> Generic Work (any non-text-based document)</p>
+  <table>
+    <tr>
+      <td style="vertical-align:top;padding-right:3em;max-width:25em;">
+        <p><input type="radio" name="work_type" /> Article</p>
+        <ul>
+          <li>published articles</li>
+          <li>unpublished articles</li>
+        </ul>
+        
+        <p><input type="radio" name="work_type" /> Dataset</p>
+        <ul>
+          <li>files containing collections of data</li>
+          <li>raw data</li>
+          <li>spreadsheets</li>
+          <li>logs</li>
+        </ul>
 
+        <p><input type="radio" name="work_type" /> Document</p>
+        <ul>
+          <li>text-based works other than articles</li>
+          <li>books</li>
+          <li>manuscripts</li>
+        </ul>
+        
+        <p><input type="radio" name="work_type" /> Student Work</p>
+        <ul>
+          <li>any kind of student work excluding Theses and Dissertations</li>
+        </ul>
+      </td>
+      <td style="vertical-align:top;">
+        <p><input type="radio" name="work_type" /> Image</p>
+        <ul>
+          <li>visual content</li>
+          <li>art</li>
+          <li>photographs</li>
+          <li>posters</li>
+          <li>graphics</li>
+        </ul>
+        
+        <p><input type="radio" name="work_type" /> Medium</p>
+        <ul>
+          <li>video</li>
+          <li>film</li>
+          <li>slide</li>
+          <li>audio</li>
+          <li>time-based media</li>
+        </ul>
+
+        <p><input type="radio" name="work_type" /> Generic Work</p>
+        <ul>
+          <li>any non-text-based document</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+  
   <p>
     &nbsp;<br />
     <a class="btn btn-primary" href="/simple_doi/creator"><< Previous</a>
